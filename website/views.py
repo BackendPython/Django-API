@@ -43,3 +43,21 @@ def postPaste(request):
         serializer.save()
     return Response(serializer.data)
 
+# API id orqali topish
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def singleapi(request, pk):
+    krasovka = Product.objects.get(id=pk)
+    serializer = ProductApi(krasovka, many=False)
+    return Response(serializer.data)
+
+#  API o'zgartirish
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def postEdit(request, pk):
+    krasovka = Product.objects.get(id=pk)
+    serializer = ProductApi(instance=krasovka, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
