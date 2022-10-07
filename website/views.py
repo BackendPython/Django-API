@@ -20,3 +20,10 @@ def filter_adidas(request):
     serializer = ProductApi(product, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def filter_nike(request):
+    product = Product.objects.filter(brend='nike')
+    serializer = ProductApi(product, many=True)
+    return Response(serializer.data)
+
