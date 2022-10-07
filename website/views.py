@@ -61,3 +61,15 @@ def postEdit(request, pk):
         serializer.save()
     return Response(serializer.data)
 
+
+
+@api_view(['DELETE'])
+@permission_classes((permissions.AllowAny,))
+def postDelete(request, pk):
+    krasovka = Product.objects.get(id=pk)
+    krasovka.delete()
+    return Response("o'chirdingiz")
+
+####################
+
+

@@ -6,6 +6,7 @@ urlpatterns = [
     path('product-<int:pk>', singleapi, name='single-api'),
     path('adidas/', filter_adidas, name='filter-adidas'),
     path('<int:pk>-edit', postEdit, name='post-edit'),
+    path('<int:pk>-delete/', postDelete, name='post-delete'),
     path('nike/', filter_nike, name='filter-nike'),
     path('add/', postPaste, name='product-add'),
 ]
