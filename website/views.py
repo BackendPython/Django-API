@@ -6,6 +6,9 @@ from .models import Product
 from rest_framework.decorators import api_view, permission_classes
 
 
+
+
+# main API
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def home(request):
@@ -13,6 +16,8 @@ def home(request):
     serializer = ProductApi(product, many=True)
     return Response(serializer.data)
 
+
+# filter adidas
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def filter_adidas(request):
@@ -20,10 +25,21 @@ def filter_adidas(request):
     serializer = ProductApi(product, many=True)
     return Response(serializer.data)
 
+# filter nike
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
 def filter_nike(request):
     product = Product.objects.filter(brend='nike')
     serializer = ProductApi(product, many=True)
+    return Response(serializer.data)
+
+# API post joylash
+
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def PostPaste(request):
+    serializer = ProductApi(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
     return Response(serializer.data)
 
