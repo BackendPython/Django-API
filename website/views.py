@@ -37,7 +37,7 @@ def filter_nike(request):
 
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
-def PostPaste(request):
+def postPaste(request):
     serializer = ProductApi(data=request.data)
     if serializer.is_valid():
         serializer.save()
